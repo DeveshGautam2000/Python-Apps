@@ -1,13 +1,23 @@
-todos = []
-
 while True:
     user_action = input("Type add, show, edit, complete ,exit: ")
 
     match user_action.strip().lower():
         case "add":
-            user_todo = input("Enter Todo: ")
+            user_todo = input("Enter Todo: ") + "\n"
+            
+            file = open(r"E:\CDAC\python\Udemy\Apps\Python-Apps\Todos\todo.txt",'r')
+            todos = file.readlines()
+            file.close()
+            
             todos.append(user_todo)
+            
+            file = open(r"E:\CDAC\python\Udemy\Apps\Python-Apps\Todos\todo.txt", "w")
+            file.writelines(todos)
+            file.close()
         case "show":
+            file = open(r"E:\CDAC\python\Udemy\Apps\Python-Apps\Todos\todo.txt",'r')
+            todos = file.readlines()
+            file.close()
             for index,todo in enumerate(todos):
                 print(index+1,todo)
         case "edit":
